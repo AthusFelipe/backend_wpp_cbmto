@@ -14,7 +14,8 @@ const ShowUserService = async (id: string | number): Promise<User> => {
       "tokenVersion",
       "whatsappId",
       "startWork",
-      "endWork"
+      "endWork",
+      "trelloId"
     ],
     include: [
       { model: Queue, as: "queues", attributes: ["id", "name", "color"] },

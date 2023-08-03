@@ -43,7 +43,8 @@ const ListUsersService = async ({
       "isTricked",
       "createdAt",
       "startWork",
-      "endWork"
+      "endWork",
+      "trelloId"
     ],
     limit,
     offset,

@@ -33,7 +33,7 @@ const UpdateTicketService = async ({
   const ticket = await ShowTicketService(ticketId);
   await SetTicketMessagesAsRead(ticket);
 
-  if(whatsappId && ticket.whatsappId !== whatsappId) {
+  if (whatsappId && ticket.whatsappId !== whatsappId) {
     await CheckContactOpenTickets(ticket.contactId, whatsappId);
   }
 
@@ -50,7 +50,7 @@ const UpdateTicketService = async ({
     userId
   });
 
-  if(whatsappId) {
+  if (whatsappId) {
     await ticket.update({
       whatsappId
     });

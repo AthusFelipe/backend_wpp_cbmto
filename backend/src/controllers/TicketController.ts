@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Request, Response } from "express";
 import { getIO } from "../libs/socket";
 
@@ -10,6 +11,8 @@ import SendWhatsAppMessage from "../services/WbotServices/SendWhatsAppMessage";
 import ShowWhatsAppService from "../services/WhatsappService/ShowWhatsAppService";
 import ShowQueueService from "../services/QueueService/ShowQueueService";
 import formatBody from "../helpers/Mustache";
+import CreateTrelloTicketService  from "../services/TrelloServices/CreateTicketService";
+
 
 type IndexQuery = {
   searchParam: string;
@@ -28,6 +31,8 @@ interface TicketData {
   userId: number;
   transf: boolean;
 }
+
+
 
 export const index = async (req: Request, res: Response): Promise<Response> => {
   const {
@@ -112,6 +117,8 @@ export const update = async (
   if (ticket.status === "closed" && ticket.isGroup === false) {
     const whatsapp = await ShowWhatsAppService(ticket.whatsappId);
 
+    await CreateTrelloTicketService(ticket);
+
     const { farewellMessage } = whatsapp;
 
     if (farewellMessage) {
@@ -119,6 +126,8 @@ export const update = async (
         body: formatBody(`\u200e${farewellMessage}`, ticket),
         ticket
       });
+
+
     }
   }
 

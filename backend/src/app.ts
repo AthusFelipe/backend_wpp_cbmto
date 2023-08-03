@@ -5,6 +5,7 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import * as Sentry from "@sentry/node";
+import fetch from "node-fetch";
 
 import "./database";
 import uploadConfig from "./config/upload";

@@ -239,6 +239,9 @@ export const initWbot = async (whatsapp: Whatsapp): Promise<Session> => {
         resolve(wbot);
       });
 
+      // wbot.on("message_create", async msg => {
+      // });
+
       wbot.on("message", async msg => {
         const msgChatGPT: string = msg.body;
         // mensagem de texto

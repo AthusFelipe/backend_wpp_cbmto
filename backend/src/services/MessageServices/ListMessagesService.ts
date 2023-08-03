@@ -31,8 +31,8 @@ const ListMessagesService = async ({
   const offset = limit * (+pageNumber - 1);
 
   const { count, rows: messages } = await Message.findAndCountAll({
-    //where: { ticketId },
-    //where: {contactid : ticket.contactId},
+    // where: { ticketId },
+    // where: {contactid : ticket.contactId},
     limit,
     include: [
       "contact",
@@ -58,6 +58,7 @@ const ListMessagesService = async ({
   });
 
   const hasMore = count > offset + messages.length;
+
 
   return {
     messages: messages.reverse(),
